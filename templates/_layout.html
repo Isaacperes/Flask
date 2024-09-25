@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/layout.css">
+    <link rel="shortcut icon" href="{{ page.site.logo }}">
+    {% if page.css %}
+    <link rel="stylesheet" href="/static/css/{{ page.css }}">{% endif %}
+    <title>{{ page.title }}</title>
+</head>
+
+<body>
+
+    <div id="wrap">
+
+        <header>
+
+            <a href="/" title="Clique para acessar a página inicial">
+                <img src="{{ page.site.logo }}" alt="Logotipo do {{ page.site.name }}.">
+                <h1>
+                    {{ page.site.name }}
+                    <small>{{ page.site.slogan }}</small>
+                </h1>
+                <span id="toggleMenu">
+                    <i class="fa-solid fa-bars fa-fw"></i>
+                </span>
+            </a>
+
+            <form action="/search" method="get">
+                <input type="search" name="q" id="headerSearch" placeholder="Procurar por...">
+                <button type="submit" title="Clique para iniciar a busca">
+                    <i class="fa-solid fa-magnifying-glass fa-fw"></i>
+                </button>
+            </form>
+
+        </header>
+
+        <nav>
+            <a href="/" title="Ir para a página inicial">
+                <i class="fa-solid fa-house fa-fw"></i>
+                <span>Início</span>
+            </a>
+            <a href="/contacts" title="Ir para Faça Contato">
+                <i class="fa-solid fa-comments fa-fw"></i>
+                <span>Contatos</span>
+            </a>
+            <a href="/about" title="Saiba mais sobre a gente">
+                <i class="fa-solid fa-circle-info fa-fw"></i>
+                <span>Sobre</span>
+            </a>
+            <a href="/policies" title="Políticas do site">
+                <i class="fa-solid fa-lock fa-fw"></i>
+                <span>Privacidade</span>
+            </a>
+        </nav>
+
+        <main>
+
+            <article>
+                {% block article %}{% endblock %}
+            </article>
+
+            <aside>
+                {% block aside %}{% endblock %}
+            </aside>
+
+        </main>
+
+        <footer>
+
+            <div class="footer_top">
+
+                <a href="/" title="Ir para a página inicial"><i class="fa-solid fa-house fa-fw"></i></a>
+                <div><i class="fa-regular fa-copyright fa-flip-horizontal"></i> {{ page.site.owner }}</div>
+                <a href="#wrap" title="ir para o topo desta página"><i class="fa-solid fa-circle-up fa-fw"></i></a>
+
+            </div>
+
+            <div class="footer_botton">
+
+                <nav>
+
+                    <h4>Redes Sociais</h4>
+
+                    {% for item in page.site.social %}
+                    <a href="{{ item.href }}">
+                        {{ item.icon | safe }}
+                        <span>{{ item.name }}</span>
+                    </a>
+                    {% endfor %}
+
+                </nav>
+
+                <nav>
+
+                    <h4>Links rápidos</h4>
+
+                    <a href="/policies">
+                        <i class="fa-solid fa-lock fa-fw"></i>
+                        <span>Privacidade</span>
+                    </a>
+                    <a href="/contacts">
+                        <i class="fa-solid fa-comments fa-fw"></i>
+                        <span>Contatos</span>
+                    </a>
+                    <a href="/about">
+                        <i class="fa-solid fa-circle-info fa-fw"></i>
+                        <span>Sobre</span>
+                    </a>
+                </nav>
+
+            </div>
+
+        </footer>
+
+        <hr style="margin: .5rem; border: 1px solid transparent">
+    </div>
+
+    <div id="menuSmoke"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/static/js/layout.js"></script>
+    {% if page.js %}
+    <script src="/static/js/{{ page.js }}"></script>{% endif %}
+</body>
+
+</html>
